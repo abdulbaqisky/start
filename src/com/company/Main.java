@@ -34,24 +34,30 @@ public class Main {
         System.out.println(result10);*/
       double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
       double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
-      char[] opcode = {'a', 's', 'm', 'd'};
-      double[] results = new double[opcode.length];
+      char[] opcodes = {'a', 's', 'm', 'd'};
+      double[] results = new double[opcodes.length];
 
-      for(int i= 0; i < opcode.length; i++) {
-        switch (opcode[i]) {
-          case 'a' -> results[i] = leftVals[i] + rightVals[i];
-          case 's' -> results[i] = leftVals[i] - rightVals[i];
-          case 'm' -> results[i] = leftVals[i] * rightVals[i];
-          case 'd' -> results[i] = leftVals[i] != 0 ? leftVals[i] / rightVals[i] : 0.0d;
-          default -> {
-            System.out.println("invalid opcode" + opcode[i]);
-            results[i] = 0.0d;
-          }
+      for(int i= 0; i < opcodes.length; i++) {
+        results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
+      }
+
+      for (double currentResult: results)
+        System.out.println(currentResult);
+
+
+    }
+    static double execute(char opcode, double leftVal, double rightVal) {
+      double result;
+      switch (opcode) {
+        case 'a' -> result = leftVal + rightVal;
+        case 's' -> result = leftVal - rightVal;
+        case 'm' -> result = leftVal * rightVal;
+        case 'd' -> result = leftVal != 0 ? leftVal / rightVal : 0.0d;
+        default -> {
+          System.out.println("invalid opcode" + opcode);
+          result = 0.0d;
         }
       }
-      for (double currentResult: results) {
-        System.out.println(currentResult);
-      }
-
+      return result;
     }
 }
