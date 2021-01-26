@@ -3,7 +3,7 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        float floatVal = 1.0f;
+        /*float floatVal = 1.0f;
         double doubleVal = 4.0d;
         byte byteVal = 7;
         short shortVal = 7;
@@ -31,7 +31,22 @@ public class Main {
         System.out.println(result7);
         System.out.println(result8);
         System.out.println(result9);
-        System.out.println(result10);
+        System.out.println(result10);*/
+      double value1 = 100.0d;
+      double value2= 50.0d;
+      double result ;
+      char opcode = 'd';
 
+      if (opcode == 'a'){
+        result = value1 + value2;
+      }else if (opcode == 's'){
+        result = value1 - value2;
+      }else if (opcode == 'm'){
+        result = value1 * value2;
+      }else if (opcode == 'd'){
+        result = value1 / value2;
+      }else result = 0.0d;
+
+      System.out.println(result);
     }
 }
