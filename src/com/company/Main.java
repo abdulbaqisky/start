@@ -35,22 +35,27 @@ public class Main {
       double value1 = 100.0d;
       double value2 = 50.0d;
       double result=0.0d;
-      char opcode = 'd';
+      char opcode = 'a';
 
-      if (opcode == 'a') {
-        result = value1 + value2;
-      } else if (opcode == 's') {
-        result = value1 - value2;
-      } else if (opcode == 'm') {
-        result = value1 * value2;
-      } else if (opcode == 'd') {
+      switch (opcode){
+        case 'a':
+          result = value1 + value2;
+          break;
+        case 's':
+          result = value1 - value2;
+          break;
+        case 'm':
+          result = value1 * value2;
+          break;
+        case 'd':
           if (value2 != 0)
             result = value1 / value2;
-        } else{
+          break;
+        default:
           System.out.println("invalid opcode" + opcode);
           result = 0.0d;
-        }
+          break;
+      }
         System.out.println(result);
-
     }
 }
