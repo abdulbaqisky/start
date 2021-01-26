@@ -34,8 +34,8 @@ public class Main {
         System.out.println(result10);*/
       double value1 = 100.0d;
       double value2 = 50.0d;
-      double result=0.0d;
-      char opcode = 'a';
+      double result;
+      char opcode = 'd';
 
       switch (opcode){
         case 'a':
@@ -48,8 +48,7 @@ public class Main {
           result = value1 * value2;
           break;
         case 'd':
-          if (value2 != 0)
-            result = value1 / value2;
+            result = value2 != 0? value1 / value2: 0.0d;
           break;
         default:
           System.out.println("invalid opcode" + opcode);
