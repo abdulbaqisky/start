@@ -39,22 +39,14 @@ public class Main {
 
       for(int i= 0; i < opcode.length; i++) {
         switch (opcode[i]) {
-          case 'a':
-            results[i] = leftVals[i] + rightVals[i];
-            break;
-          case 's':
-            results[i] = leftVals[i] - rightVals[i];
-            break;
-          case 'm':
-            results[i] = leftVals[i] * rightVals[i];
-            break;
-          case 'd':
-            results[i] = leftVals[i] != 0 ? leftVals[i] / rightVals[i] : 0.0d;
-            break;
-          default:
+          case 'a' -> results[i] = leftVals[i] + rightVals[i];
+          case 's' -> results[i] = leftVals[i] - rightVals[i];
+          case 'm' -> results[i] = leftVals[i] * rightVals[i];
+          case 'd' -> results[i] = leftVals[i] != 0 ? leftVals[i] / rightVals[i] : 0.0d;
+          default -> {
             System.out.println("invalid opcode" + opcode[i]);
             results[i] = 0.0d;
-            break;
+          }
         }
       }
       for (double currentResult: results) {
