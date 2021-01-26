@@ -33,20 +33,24 @@ public class Main {
         System.out.println(result9);
         System.out.println(result10);*/
       double value1 = 100.0d;
-      double value2= 50.0d;
-      double result ;
+      double value2 = 50.0d;
+      double result=0.0d;
       char opcode = 'd';
 
-      if (opcode == 'a'){
+      if (opcode == 'a') {
         result = value1 + value2;
-      }else if (opcode == 's'){
+      } else if (opcode == 's') {
         result = value1 - value2;
-      }else if (opcode == 'm'){
+      } else if (opcode == 'm') {
         result = value1 * value2;
-      }else if (opcode == 'd'){
-        result = value1 / value2;
-      }else result = 0.0d;
+      } else if (opcode == 'd') {
+          if (value2 != 0)
+            result = value1 / value2;
+        } else{
+          System.out.println("invalid opcode" + opcode);
+          result = 0.0d;
+        }
+        System.out.println(result);
 
-      System.out.println(result);
     }
 }
