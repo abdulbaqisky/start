@@ -32,29 +32,34 @@ public class Main {
         System.out.println(result8);
         System.out.println(result9);
         System.out.println(result10);*/
-      double value1 = 100.0d;
-      double value2 = 50.0d;
-      double result;
-      char opcode = 'd';
+      double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
+      double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
+      char[] opcode = {'a', 's', 'm', 'd'};
+      double[] results = new double[opcode.length];
 
-      switch (opcode){
-        case 'a':
-          result = value1 + value2;
-          break;
-        case 's':
-          result = value1 - value2;
-          break;
-        case 'm':
-          result = value1 * value2;
-          break;
-        case 'd':
-            result = value2 != 0? value1 / value2: 0.0d;
-          break;
-        default:
-          System.out.println("invalid opcode" + opcode);
-          result = 0.0d;
-          break;
+      for(int i= 0; i < opcode.length; i++) {
+        switch (opcode[i]) {
+          case 'a':
+            results[i] = leftVals[i] + rightVals[i];
+            break;
+          case 's':
+            results[i] = leftVals[i] - rightVals[i];
+            break;
+          case 'm':
+            results[i] = leftVals[i] * rightVals[i];
+            break;
+          case 'd':
+            results[i] = leftVals[i] != 0 ? leftVals[i] / rightVals[i] : 0.0d;
+            break;
+          default:
+            System.out.println("invalid opcode" + opcode[i]);
+            results[i] = 0.0d;
+            break;
+        }
       }
-        System.out.println(result);
+      for (double currentResult: results) {
+        System.out.println(currentResult);
+      }
+
     }
 }
