@@ -37,16 +37,29 @@ public class Main {
       char[] opcodes = {'a', 's', 'm', 'd'};
       double[] results = new double[opcodes.length];
 
-      for(int i= 0; i < opcodes.length; i++) {
-        results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
-      }
+      if(args.length == 0) {
+        for (int i = 0; i < opcodes.length; i++) {
+          results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
+        }
 
-      for (double currentResult: results)
-        System.out.println(currentResult);
-
+        for (double currentResult : results)
+          System.out.println(currentResult);
+      }else if(args.length == 3){
+        handleCommandLine(args);
+      }else
+        System.out.println("Please provide an operation code and two numerical values");
 
     }
-    static double execute(char opcode, double leftVal, double rightVal) {
+
+  private static void handleCommandLine(String[] args) {
+      char opcode = args[0].charAt(0);
+      double lefVal = Double.parseDouble(args[1]);
+      double rightVal = Double.parseDouble(args[2]);
+      double result = execute(opcode, lefVal, rightVal);
+      System.out.println(result);
+  }
+
+  static double execute(char opcode, double leftVal, double rightVal) {
       double result;
       switch (opcode) {
         case 'a' -> result = leftVal + rightVal;
