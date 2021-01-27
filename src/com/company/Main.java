@@ -49,7 +49,9 @@ public class Main {
           System.out.println(currentResult);
       }else if(args.length == 3){
         handleCommandLine(args);
-      }else
+      }else if(args.length == 1 && args[0].equals("interactive"))
+        handleInteractively();
+      else
         System.out.println("Please provide an operation code and two numerical values");
 
     }
@@ -65,8 +67,8 @@ public class Main {
 
   private static void performOperation(String[] parts) {
       char opcode = opcodeFromString(parts[0]);
-      double leftVal = opcodeFromString(parts[1]);
-      double rightVal = opcodeFromString(parts[2]);
+      double leftVal = valueFromWord(parts[1]);
+      double rightVal = valueFromWord(parts[2]);
       double result = execute(opcode, leftVal, rightVal);
       System.out.println(result);
   }
@@ -93,11 +95,13 @@ public class Main {
       }
       return result;
     }
+
     static char opcodeFromString(String operationName){
       char opcode = operationName.charAt(0);
       return opcode;
     }
-    double valueFromWord(String word){
+
+    static double valueFromWord(String word){
       String[] numberWords = {
           "zero", "one", "two", "three", "four",
           "five", "six", "seven", "eight", "nine"
