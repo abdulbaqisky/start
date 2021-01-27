@@ -70,7 +70,34 @@ public class Main {
       double leftVal = valueFromWord(parts[1]);
       double rightVal = valueFromWord(parts[2]);
       double result = execute(opcode, leftVal, rightVal);
-      System.out.println(result);
+      displayResult(opcode, leftVal, rightVal, result);
+  }
+
+  private static char symbolFromOpcode(char opCode) {
+    char[] opCodes = {'a', 's', 'm', 'd'};
+    char[] symbols = {'+', '-', '*', '/'};
+    char symbol = ' ';
+    for (int i = 0; i < opCodes.length; i++) {
+      if (opCode == opCodes[i])
+        symbol = symbols[i];
+        break;
+    }
+    return symbol;
+
+  }
+
+  private static void displayResult(char opcode, double leftVal, double rightVal, double result) {
+      char symbol = symbolFromOpcode(opcode);
+      StringBuilder builder = new StringBuilder(20);
+      builder.append(leftVal);
+      builder.append(" ");
+      builder.append(symbol);
+      builder.append(" ");
+      builder.append(rightVal);
+      builder.append(" = ");
+      builder.append(result);
+      String output = builder.toString();
+      System.out.println(output);
   }
 
   private static void handleCommandLine(String[] args) {
