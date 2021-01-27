@@ -65,7 +65,7 @@ public class Main {
 
     }
 
-  private static void performOperation(String[] parts) {
+  private static void performOperation(String[] parts)  {
       char opcode = opcodeFromString(parts[0]);
       double leftVal = valueFromWord(parts[1]);
       double rightVal = valueFromWord(parts[2]);
@@ -88,7 +88,8 @@ public class Main {
 
   private static void displayResult(char opcode, double leftVal, double rightVal, double result) {
       char symbol = symbolFromOpcode(opcode);
-      StringBuilder builder = new StringBuilder(20);
+
+      /*StringBuilder builder = new StringBuilder(20);
       builder.append(leftVal);
       builder.append(" ");
       builder.append(symbol);
@@ -96,8 +97,12 @@ public class Main {
       builder.append(rightVal);
       builder.append(" = ");
       builder.append(result);
-      String output = builder.toString();
+      String output = builder.toString();*/
+
+    String output = String.format("%.3f %c %.3f = %.3f", leftVal, symbol, rightVal, result);
       System.out.println(output);
+
+
   }
 
   private static void handleCommandLine(String[] args) {
