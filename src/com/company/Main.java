@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -67,10 +68,24 @@ public class Main {
 
   private static void performOperation(String[] parts)  {
       char opcode = opcodeFromString(parts[0]);
-      double leftVal = valueFromWord(parts[1]);
-      double rightVal = valueFromWord(parts[2]);
-      double result = execute(opcode, leftVal, rightVal);
-      displayResult(opcode, leftVal, rightVal, result);
+      if (opcode == 'w')
+        handleWhen(parts);
+      else {
+        double leftVal = valueFromWord(parts[1]);
+        double rightVal = valueFromWord(parts[2]);
+        double result = execute(opcode, leftVal, rightVal);
+        displayResult(opcode, leftVal, rightVal, result);
+  }
+    }
+
+  private static void handleWhen(String[] parts) {
+    LocalDate startDate = LocalDate.parse(parts[1]);
+    long daysToAdd = (long) valueFromWord(parts[2]);
+    LocalDate newDate = startDate.plusDays(daysToAdd);
+    String output = String.format("%s plus %d days is %s", startDate, daysToAdd, newDate);
+    System.out.println(output);
+
+
   }
 
   private static char symbolFromOpcode(char opCode) {
