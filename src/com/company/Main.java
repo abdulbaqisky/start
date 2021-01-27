@@ -102,10 +102,10 @@ public class Main {
 
   private static void handleCommandLine(String[] args) {
       char opcode = args[0].charAt(0);
-      double lefVal = Double.parseDouble(args[1]);
+      double leftVal = Double.parseDouble(args[1]);
       double rightVal = Double.parseDouble(args[2]);
-      double result = execute(opcode, lefVal, rightVal);
-      System.out.println(result);
+      double result = execute(opcode, leftVal, rightVal);
+      displayResult(opcode, leftVal, rightVal, result);
   }
 
   static double execute(char opcode, double leftVal, double rightVal) {
