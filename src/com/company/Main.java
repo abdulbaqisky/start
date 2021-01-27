@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -32,6 +34,7 @@ public class Main {
         System.out.println(result8);
         System.out.println(result9);
         System.out.println(result10);*/
+
       double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
       double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
       char[] opcodes = {'a', 's', 'm', 'd'};
@@ -50,6 +53,23 @@ public class Main {
         System.out.println("Please provide an operation code and two numerical values");
 
     }
+
+    static void handleInteractively(){
+      System.out.println("Enter an operation and two numbers");
+      Scanner scanner= new Scanner(System.in);
+      String userInput = scanner.nextLine();
+      String [] parts = userInput.split(" ");
+      performOperation(parts);
+
+    }
+
+  private static void performOperation(String[] parts) {
+      char opcode = opcodeFromString(parts[0]);
+      double leftVal = opcodeFromString(parts[1]);
+      double rightVal = opcodeFromString(parts[2]);
+      double result = execute(opcode, leftVal, rightVal);
+      System.out.println(result);
+  }
 
   private static void handleCommandLine(String[] args) {
       char opcode = args[0].charAt(0);
@@ -72,5 +92,23 @@ public class Main {
         }
       }
       return result;
+    }
+    static char opcodeFromString(String operationName){
+      char opcode = operationName.charAt(0);
+      return opcode;
+    }
+    double valueFromWord(String word){
+      String[] numberWords = {
+          "zero", "one", "two", "three", "four",
+          "five", "six", "seven", "eight", "nine"
+      };
+      double value =0d;
+      for(int index =0; index <= numberWords.length; index++){
+        if(word.equals(numberWords[index])){
+          value = index;
+          break;
+        }
+      }
+      return value;
     }
 }
