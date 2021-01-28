@@ -144,8 +144,7 @@ public class Main {
     }
 
     static char opcodeFromString(String operationName){
-      char opcode = operationName.charAt(0);
-      return opcode;
+      return operationName.charAt(0);
     }
 
     static double valueFromWord(String word) {
