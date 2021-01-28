@@ -93,10 +93,10 @@ public class Main {
     char[] symbols = {'+', '-', '*', '/'};
     char symbol = ' ';
     for (int i = 0; i < opCodes.length; i++) {
-      if (opCode == opCodes[i])
+      if (opCode == opCodes[i]){
         symbol = symbols[i];
         break;
-    }
+    }}
     return symbol;
 
   }
@@ -148,18 +148,21 @@ public class Main {
       return opcode;
     }
 
-    static double valueFromWord(String word){
+    static double valueFromWord(String word) {
       String[] numberWords = {
           "zero", "one", "two", "three", "four",
           "five", "six", "seven", "eight", "nine"
       };
-      double value =0d;
-      for(int index =0; index <= numberWords.length; index++){
+      double value = -1d;
+      for(int index = 0; index < numberWords.length; index++){
         if(word.equals(numberWords[index])){
           value = index;
           break;
         }
       }
-      return value;
+      if(value == -1d)
+        value = Double.parseDouble(word);
+
+        return value;
     }
 }
