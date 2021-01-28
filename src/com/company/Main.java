@@ -32,21 +32,38 @@ public class Main {
         System.out.println(result8);
         System.out.println(result9);
         System.out.println(result10);*/
-      double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
-      double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
-      char[] opcodes = {'a', 's', 'm', 'd'};
-      double[] results = new double[opcodes.length];
-
-      for(int i= 0; i < opcodes.length; i++) {
-        results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
-      }
-
-      for (double currentResult: results)
-        System.out.println(currentResult);
-
-
+      performCalculations();
     }
-    static double execute(char opcode, double leftVal, double rightVal) {
+
+  private static void performCalculations() {
+    double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
+    double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
+    char[] opcodes = {'a', 's', 'm', 'd'};
+    double[] results = new double[opcodes.length];
+
+    MathEquation[] equations = new MathEquation[4];
+    equations[0] = create(25.0d, 92.0d, 'a');
+    equations[0] = create(225.0d, 17.0d, 's');
+    equations[0] = create(11.0d, 3.0d, 'm');
+    equations[0] = create(100.0d, 50.0d, 'd');
+
+    for(int i= 0; i < opcodes.length; i++) {
+      results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
+    }
+
+    for (double currentResult: results)
+      System.out.println(currentResult);
+  }
+
+  private static MathEquation create(double leftVal, double rightVal, char opCode) {
+      MathEquation equation = new MathEquation();
+      equation.leftVal = leftVal;
+      equation.rightVal = rightVal;
+      equation.opCode = opCode;
+      return equation;
+  }
+
+  static double execute(char opcode, double leftVal, double rightVal) {
       double result;
       switch (opcode) {
         case 'a' -> result = leftVal + rightVal;
