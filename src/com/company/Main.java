@@ -52,9 +52,12 @@ public class Main {
 
   private static MathEquation create(double leftVal, double rightVal, char opCode) {
       MathEquation equation = new MathEquation();
-      equation.leftVal = leftVal;
+      equation.setLeftVal(leftVal);
+      equation.setRightVal(rightVal);
+      /*equation.leftVal = leftVal;
       equation.rightVal = rightVal;
-      equation.opCode = opCode;
+      equation.opCode = opCode;*/
+      equation.setOpCode(opCode);
       return equation;
   }
 }

@@ -19,4 +19,15 @@ public class MathEquation {
     }
   }
 
+  public void setLeftVal(double leftVal) {
+    this.leftVal = leftVal;
+  }
+
+  public void setRightVal(double rightVal) {
+    this.rightVal = rightVal;
+  }
+
+  public void setOpCode(char opCode) {
+    this.opCode = opCode;
+  }
 }
