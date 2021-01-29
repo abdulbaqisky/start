@@ -36,23 +36,18 @@ public class Main {
     }
 
   private static void performCalculations() {
-    double[] leftVals = {25.0d, 225.0d, 11.0d, 100.0d};
-    double[] rightVals = {92.0d, 17.0d, 3.0d, 50.0d};
-    char[] opcodes = {'a', 's', 'm', 'd'};
-    double[] results = new double[opcodes.length];
-
+      
     MathEquation[] equations = new MathEquation[4];
     equations[0] = create(25.0d, 92.0d, 'a');
-    equations[0] = create(225.0d, 17.0d, 's');
-    equations[0] = create(11.0d, 3.0d, 'm');
-    equations[0] = create(100.0d, 50.0d, 'd');
+    equations[1] = create(225.0d, 17.0d, 's');
+    equations[2] = create(11.0d, 3.0d, 'm');
+    equations[3] = create(100.0d, 50.0d, 'd');
 
-    for(int i= 0; i < opcodes.length; i++) {
-      results[i] = execute(opcodes[i], leftVals[i], rightVals[i]);
+    for (MathEquation equation: equations) {
+      equation.execute();
+      System.out.println("result = " + equation.result);
+
     }
-
-    for (double currentResult: results)
-      System.out.println(currentResult);
   }
 
   private static MathEquation create(double leftVal, double rightVal, char opCode) {
@@ -62,19 +57,4 @@ public class Main {
       equation.opCode = opCode;
       return equation;
   }
-
-  static double execute(char opcode, double leftVal, double rightVal) {
-      double result;
-      switch (opcode) {
-        case 'a' -> result = leftVal + rightVal;
-        case 's' -> result = leftVal - rightVal;
-        case 'm' -> result = leftVal * rightVal;
-        case 'd' -> result = leftVal != 0 ? leftVal / rightVal : 0.0d;
-        default -> {
-          System.out.println("invalid opcode" + opcode);
-          result = 0.0d;
-        }
-      }
-      return result;
-    }
 }

@@ -6,4 +6,17 @@ public class MathEquation {
   char opCode;
   double result;
 
+  void execute() {
+    switch (opCode) {
+      case 'a' -> result = leftVal + rightVal;
+      case 's' -> result = leftVal - rightVal;
+      case 'm' -> result = leftVal * rightVal;
+      case 'd' -> result = leftVal != 0 ? leftVal / rightVal : 0.0d;
+      default -> {
+        System.out.println("invalid opcode" + opCode);
+        result = 0.0d;
+      }
+    }
+  }
+
 }
