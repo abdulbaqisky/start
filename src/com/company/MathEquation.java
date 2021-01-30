@@ -6,6 +6,10 @@ public class MathEquation {
   char opCode;
   double result;
 
+  private static int numberOfCalculations;
+  private static double sumOfResults;
+
+
   public MathEquation() {
   }
 
@@ -30,10 +34,24 @@ public class MathEquation {
         result = 0.0d;
       }
     }
+    numberOfCalculations++;
+    sumOfResults += result;
+  }
+
+  public static double getAverageResult() {
+    return sumOfResults / numberOfCalculations;
   }
 
   public void setLeftVal(double leftVal) {
     this.leftVal = leftVal;
+  }
+
+  public double getLeftVal() {
+    return leftVal;
+  }
+
+  public double getRightVal() {
+    return rightVal;
   }
 
   public void setRightVal(double rightVal) {

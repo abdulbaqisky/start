@@ -46,8 +46,8 @@ public class Main {
     for (MathEquation equation : equations) {
       equation.execute();
       System.out.println("result = " + equation.result);
-
     }
+    System.out.println("Average result = " + MathEquation.getAverageResult());
   }
 
 }
