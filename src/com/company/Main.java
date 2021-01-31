@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -56,21 +57,35 @@ public class Main {
 
     }
 
-    static void handleInteractively(){
-      System.out.println("Enter an operation and two numbers");
-      Scanner scanner= new Scanner(System.in);
-      String userInput = scanner.nextLine();
-      String [] parts = userInput.split(" ");
-      performOperation(parts);
+  static void handleInteractively() {
+    System.out.println("Enter an operation and two numbers");
+    Scanner scanner = new Scanner(System.in);
+    String userInput = scanner.nextLine();
+    String[] parts = userInput.split(" ");
+    performOperation(parts);
 
-    }
+  }
 
-  private static void performOperation(String[] parts)  {
-      char opcode = opcodeFromString(parts[0]);
+  private static void performOperation(String[] parts) {
+    char opcode = opCodeFromString(parts[0]);
+
+    if (opcode == 'w')
+      handleWhen(parts);
+    else {
       double leftVal = valueFromWord(parts[1]);
       double rightVal = valueFromWord(parts[2]);
       double result = execute(opcode, leftVal, rightVal);
       displayResult(opcode, leftVal, rightVal, result);
+    }
+  }
+
+  private static void handleWhen(String[] parts) {
+    LocalDate startDate = LocalDate.parse(parts[1]);
+    long daysToAdd = (long) valueFromWord(parts[2]);
+    LocalDate newDate = startDate.plusDays(daysToAdd);
+    String output = String.format("%s plus %d days is %s ", startDate, daysToAdd, newDate);
+    System.out.println(output);
+
   }
 
   private static char symbolFromOpcode(char opCode) {
@@ -80,15 +95,14 @@ public class Main {
     for (int i = 0; i < opCodes.length; i++) {
       if (opCode == opCodes[i])
         symbol = symbols[i];
-        break;
+      break;
     }
     return symbol;
 
   }
 
-  private static void displayResult(char opcode, double leftVal, double rightVal, double result) {
-      char symbol = symbolFromOpcode(opcode);
-
+  private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
+    char symbol = symbolFromOpcode(opCode);
       /*StringBuilder builder = new StringBuilder(20);
       builder.append(leftVal);
       builder.append(" ");
@@ -113,34 +127,34 @@ public class Main {
       displayResult(opcode, leftVal, rightVal, result);
   }
 
-  static double execute(char opcode, double leftVal, double rightVal) {
-      double result;
-      switch (opcode) {
-        case 'a' -> result = leftVal + rightVal;
-        case 's' -> result = leftVal - rightVal;
-        case 'm' -> result = leftVal * rightVal;
-        case 'd' -> result = leftVal != 0 ? leftVal / rightVal : 0.0d;
-        default -> {
-          System.out.println("invalid opcode" + opcode);
-          result = 0.0d;
-        }
+  static double execute(char opCode, double leftVal, double rightVal) {
+    double result;
+    switch (opCode) {
+      case 'a' -> result = leftVal + rightVal;
+      case 's' -> result = leftVal - rightVal;
+      case 'm' -> result = leftVal * rightVal;
+      case 'd' -> result = leftVal != 0 ? leftVal / rightVal : 0.0d;
+      default -> {
+        System.out.println("invalid opCode" + opCode);
+        result = 0.0d;
       }
-      return result;
     }
+    return result;
+  }
 
-    static char opcodeFromString(String operationName){
-      char opcode = operationName.charAt(0);
-      return opcode;
-    }
+  static char opCodeFromString(String operationName) {
+    char opCode = operationName.charAt(0);
+    return opCode;
+  }
 
-    static double valueFromWord(String word){
-      String[] numberWords = {
-          "zero", "one", "two", "three", "four",
-          "five", "six", "seven", "eight", "nine"
-      };
-      double value =0d;
-      for(int index =0; index <= numberWords.length; index++){
-        if(word.equals(numberWords[index])){
+  static double valueFromWord(String word) {
+    String[] numberWords = {
+        "zero", "one", "two", "three", "four",
+        "five", "six", "seven", "eight", "nine"
+    };
+    double value = 0d;
+    for (int index = 0; index <= numberWords.length; index++) {
+      if (word.equals(numberWords[index])) {
           value = index;
           break;
         }
