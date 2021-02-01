@@ -92,10 +92,11 @@ public class Main {
     char[] opCodes = {'a', 's', 'm', 'd'};
     char[] symbols = {'+', '-', '*', '/'};
     char symbol = ' ';
-    for (int i = 0; i < opCodes.length; i++) {
-      if (opCode == opCodes[i])
+    for (int i = 0; i <= opCodes.length; i++) {
+      if (opCode == opCodes[i]) {
         symbol = symbols[i];
-      break;
+        break;
+      }
     }
     return symbol;
 
@@ -143,8 +144,7 @@ public class Main {
   }
 
   static char opCodeFromString(String operationName) {
-    char opCode = operationName.charAt(0);
-    return opCode;
+    return operationName.charAt(0);
   }
 
   static double valueFromWord(String word) {
@@ -152,13 +152,16 @@ public class Main {
         "zero", "one", "two", "three", "four",
         "five", "six", "seven", "eight", "nine"
     };
-    double value = 0d;
-    for (int index = 0; index <= numberWords.length; index++) {
+    double value = -1d;
+    for (int index = 0; index < numberWords.length; index++) {
       if (word.equals(numberWords[index])) {
-          value = index;
-          break;
-        }
+        value = index;
+        break;
       }
-      return value;
     }
+    if (value == -1d) {
+      value = Double.parseDouble(word);
+    }
+    return value;
+  }
 }
