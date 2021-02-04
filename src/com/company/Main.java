@@ -2,22 +2,39 @@ package com.company;
 
 public class Main {
 
-    public static void main(String[] args) {
-      performCalculations();
+  public static void main(String[] args) {
+    // performCalculations();
 
-      Adder adder = new Adder();
-      doCalculation(adder, 25.0d, 92.0d);
+    Adder adder = new Adder();
+    doCalculation(adder, 25.0d, 92.0d);
 
-      Subtracter subtracter = new Subtracter();
-      doCalculation(subtracter, 225.0d, 17.0d);
+    Subtracter subtracter = new Subtracter();
+    doCalculation(subtracter, 225.0d, 17.0d);
 
-      Multiplier multiplier = new Multiplier();
-      doCalculation(multiplier, 11.0d, 3.0d);
+    Multiplier multiplier = new Multiplier();
+    doCalculation(multiplier, 11.0d, 3.0d);
 
-      Divider divider = new Divider();
-      doCalculation(divider, 100.0d, 50.0d);
+    Divider divider = new Divider();
+    doCalculation(divider, 100.0d, 50.0d);
 
+    performMoreCalculations();
+  }
+
+  private static void performMoreCalculations() {
+    CalculateBase[] calculations = {
+        new Adder(25.0d, 92.0d),
+        new Subtracter(225.0d, 17.0d),
+        new Multiplier(11.0d, 3.0d),
+        new Divider(100.0, 50.0d)
+    };
+    System.out.println();
+    System.out.println("Array Calculation");
+
+    for (CalculateBase calculation : calculations) {
+      calculation.calculate();
+      System.out.println("result = " + calculation.getResult());
     }
+  }
 
   static void doCalculation(CalculateBase calculation, double leftVal, double rightVal) {
     calculation.setLeftVal(leftVal);

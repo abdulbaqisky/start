@@ -52,7 +52,6 @@ public class MathEquation {
   public void setLeftVal(double leftVal) {
     this.leftVal = leftVal;
   }
-
   public double getLeftVal() {
     return leftVal;
   }
@@ -60,7 +59,6 @@ public class MathEquation {
   public double getRightVal() {
     return rightVal;
   }
-
   public void setRightVal(double rightVal) {
     this.rightVal = rightVal;
   }
